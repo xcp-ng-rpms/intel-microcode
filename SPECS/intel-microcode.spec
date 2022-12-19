@@ -4,7 +4,7 @@
 
 Summary:        Intel Microcode
 Name:           intel-microcode
-Version:        20220504
+Version:        20221013
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -45,5 +45,8 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Mon Dec 19 2022 Samuel Verschelde <stormi-xcp@ylix.fr> - 20221013-1
+- Update to 20221013
+
 * Wed Oct 05 2022 Samuel Verschelde <stormi-xcp@ylix.fr> - 20220504-1
 - Create intel-microcode RPM
