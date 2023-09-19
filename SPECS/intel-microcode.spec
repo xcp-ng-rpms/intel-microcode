@@ -1,10 +1,10 @@
 # Citrix does not publish SRPMs for their package, so we're duplicating efforts
-%define xs_release 1 
+%define xs_release 1
 %define xs_dist xs8
 
 Summary:        Intel Microcode
 Name:           intel-microcode
-Version:        20230206
+Version:        20230720
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -45,6 +45,9 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Tue Sep 19 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 20230720-1
+- Update to IPU 2023.3 release
+
 * Fri Mar 17 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 20230206-1
 - Update to IPU 2023.1 release
 
