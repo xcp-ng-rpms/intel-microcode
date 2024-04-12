@@ -4,7 +4,7 @@
 
 Summary:        Intel Microcode
 Name:           intel-microcode
-Version:        20231009
+Version:        20240130
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -45,6 +45,9 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Fri Apr 12 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20240130-1
+- Update to IPU 2024.1 release
+
 * Tue Jan 23 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20231009-1
 - Update to IPU 2023.4 release
 
