@@ -27,6 +27,17 @@ Microcode blobs for Intel CPUs.
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 lib/firmware/intel-ucode/* %{buildroot}/lib/firmware/intel-ucode
 
+%check
+# XS gets `06-4f-01` from Intel's intel-ucode-with-caveats directory.
+# Were we to use Intel's tarball directly as source for this RPM, we'd risk
+# forgetting about it.
+# Hence this security to remember to adapt the packaging if/when we do so.
+# (we could do it by simply listing the file in %%files, but it would then get listed twice)
+if [ ! -f %{buildroot}/lib/firmware/intel-ucode/06-4f-01 ]; then
+    echo "Missing 06-4f-01! Genuine removal, or packaging needs adapting?"
+    exit 1
+fi
+
 %post
 %{regenerate_initrd_post}
 
