@@ -4,15 +4,13 @@
 
 Summary:        Intel Microcode
 Name:           intel-microcode
-Version:        20240717
+Version:        20240815
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
 
 # Source tarball created with `rpm2archive intel-microcode-%{version}-%{xs_release}-%{xs_dist}.noarch.rpm`
 Source0:        %{name}-%{version}-%{xs_release}.%{xs_dist}.noarch.rpm.tgz
-# REMOVE ME NEXT UPDATE
-Source1:        06-a5-03
 
 BuildArch:      noarch
 BuildRequires:  kernel-devel
@@ -28,7 +26,6 @@ Microcode blobs for Intel CPUs.
 %install
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 lib/firmware/intel-ucode/* %{buildroot}/lib/firmware/intel-ucode
-cp -f %{SOURCE1} %{buildroot}/lib/firmware/intel-ucode
 
 %check
 # XS gets `06-4f-01` from Intel's intel-ucode-with-caveats directory.
@@ -59,6 +56,9 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Tue Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
+- Update to latest version of IPU 2024.3
+
 * Tue Aug 27 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20240717-1
 - Update to IPU 2024.3 release
 - As the archive from XS is missing an update for 06-a5-03 due to Intel
