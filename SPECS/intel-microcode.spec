@@ -4,7 +4,10 @@
 
 Summary:        Intel Microcode
 Name:           intel-microcode
-Version:        20240815
+# This is the version coming from XenServer, who gets the microcode in advance
+# so they have a different date from the public release.
+# Put the public release version in the changelog when applicable.
+Version:        20241016
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -56,6 +59,9 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Wed Nov 13 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20241016-1
+- Update to publicly released microcode-20241112
+
 * Tue Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
 - Update to latest version of IPU 2024.3
 
