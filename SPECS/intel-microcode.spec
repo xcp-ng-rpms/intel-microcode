@@ -7,13 +7,19 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20241016
+Version:        20250127
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
 
 # Source tarball created with `rpm2archive intel-microcode-%{version}-%{xs_release}-%{xs_dist}.noarch.rpm`
 Source0:        %{name}-%{version}-%{xs_release}.%{xs_dist}.noarch.rpm.tgz
+
+# XCP-ng: Dropped by Intel in their updates, relates early steppings of
+# Sapphire Rapids, we keep them in case some homelabber got their hands on
+# these, but they won't be updated.
+Source1: SOURCES/06-8f-05
+Source2: SOURCES/06-8f-06
 
 BuildArch:      noarch
 BuildRequires:  kernel-devel
@@ -29,6 +35,8 @@ Microcode blobs for Intel CPUs.
 %install
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 lib/firmware/intel-ucode/* %{buildroot}/lib/firmware/intel-ucode
+install -m 644 %{SOURCE1} %{buildroot}/lib/firmware/intel-ucode
+install -m 644 %{SOURCE2} %{buildroot}/lib/firmware/intel-ucode
 
 %check
 # XS gets `06-4f-01` from Intel's intel-ucode-with-caveats directory.
@@ -59,6 +67,16 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Fri Feb 21 2025 David Morel <david.morel@vates.tech> - 20250127-1
+- Update to publicly released microcode-20250211
+- Security updates for:
+    - INTEL-SA-01166
+    - INTEL-SA-01213
+    - INTEL-SA-01139
+    - INTEL-SA-01228
+- Updates for multiple functional issues
+- Upstream update drops files for older Sapphire Rapids steppings, we kept the previous versions
+
 * Wed Nov 13 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20241016-1
 - Update to publicly released microcode-20241112
 
