@@ -7,7 +7,7 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20250127
+Version:        20250501
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -67,6 +67,16 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Mon May 12 2025 Samuel Verschelde <stormi-xcp@ylix.fr> - 20250501-1
+- Update to publicly released microcode-20250512
+- Security updates for:
+    - INTEL-SA-01153
+    - INTEL-SA-01244
+    - INTEL-SA-01247
+    - INTEL-SA-01322
+- Updates for multiple functional issues
+- Upstream doesn't provide updates for older Sapphire Rapids steppings, we kept the last known versions
+
 * Fri Feb 21 2025 David Morel <david.morel@vates.tech> - 20250127-1
 - Update to publicly released microcode-20250211
 - Security updates for:
