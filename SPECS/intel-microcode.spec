@@ -90,7 +90,7 @@ rm -rf %{buildroot}
 * Wed Nov 13 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20241016-1
 - Update to publicly released microcode-20241112
 
-* Tue Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
+* Wed Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
 - Update to latest version of IPU 2024.3
 
 * Tue Aug 27 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20240717-1
