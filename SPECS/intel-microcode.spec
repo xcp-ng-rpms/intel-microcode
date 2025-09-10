@@ -35,6 +35,10 @@ Microcode blobs for Intel CPUs.
 %install
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 lib/firmware/intel-ucode/* %{buildroot}/lib/firmware/intel-ucode
+# The files that we provide directly in SOURCES must not exist in the archive
+# If the following fails, then we must review what we do with these extra ucode files
+[ ! -f "%{buildroot}/lib/firmware/intel-ucode/$(basename %SOURCE1)" ] || exit 1
+[ ! -f "%{buildroot}/lib/firmware/intel-ucode/$(basename $SOURCE2)" ] || exit 1
 install -m 644 %{SOURCE1} %{buildroot}/lib/firmware/intel-ucode
 install -m 644 %{SOURCE2} %{buildroot}/lib/firmware/intel-ucode
 
