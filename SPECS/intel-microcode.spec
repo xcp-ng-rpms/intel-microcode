@@ -18,8 +18,8 @@ Source0:        %{name}-%{version}-%{xs_release}.%{xs_dist}.noarch.rpm.tgz
 # XCP-ng: Dropped by Intel in their updates, relates early steppings of
 # Sapphire Rapids, we keep them in case some homelabber got their hands on
 # these, but they won't be updated.
-Source1: SOURCES/06-8f-05
-Source2: SOURCES/06-8f-06
+Source1: 06-8f-05
+Source2: 06-8f-06
 
 BuildArch:      noarch
 BuildRequires:  kernel-devel
