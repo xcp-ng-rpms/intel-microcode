@@ -7,7 +7,7 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20250501
+Version:        20250715
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -18,8 +18,8 @@ Source0:        %{name}-%{version}-%{xs_release}.%{xs_dist}.noarch.rpm.tgz
 # XCP-ng: Dropped by Intel in their updates, relates early steppings of
 # Sapphire Rapids, we keep them in case some homelabber got their hands on
 # these, but they won't be updated.
-Source1: SOURCES/06-8f-05
-Source2: SOURCES/06-8f-06
+Source1: 06-8f-05
+Source2: 06-8f-06
 
 BuildArch:      noarch
 BuildRequires:  kernel-devel
@@ -35,6 +35,10 @@ Microcode blobs for Intel CPUs.
 %install
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 lib/firmware/intel-ucode/* %{buildroot}/lib/firmware/intel-ucode
+# The files that we provide directly in SOURCES must not exist in the archive
+# If the following fails, then we must review what we do with these extra ucode files
+[ ! -f "%{buildroot}/lib/firmware/intel-ucode/$(basename %SOURCE1)" ] || exit 1
+[ ! -f "%{buildroot}/lib/firmware/intel-ucode/$(basename $SOURCE2)" ] || exit 1
 install -m 644 %{SOURCE1} %{buildroot}/lib/firmware/intel-ucode
 install -m 644 %{SOURCE2} %{buildroot}/lib/firmware/intel-ucode
 
@@ -67,6 +71,17 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Wed Sep 10 2025 Samuel Verschelde <stormi-xcp@ylix.fr> - 20250715-1
+- Update to publicly released microcode-20250812
+- Security updates for:
+    - INTEL-SA-01249
+    - INTEL-SA-01308
+    - INTEL-SA-01310
+    - INTEL-SA-01311
+    - INTEL-SA-01367
+- Updates for multiple functional issues
+- Upstream doesn't provide updates for older Sapphire Rapids steppings, we kept the last known versions
+
 * Mon May 12 2025 Samuel Verschelde <stormi-xcp@ylix.fr> - 20250501-1
 - Update to publicly released microcode-20250512
 - Security updates for:
@@ -90,7 +105,7 @@ rm -rf %{buildroot}
 * Wed Nov 13 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20241016-1
 - Update to publicly released microcode-20241112
 
-* Tue Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
+* Wed Oct 02 2024 David Morel <david.morel@vates.tech> - 20240815-1
 - Update to latest version of IPU 2024.3
 
 * Tue Aug 27 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 20240717-1
