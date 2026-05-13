@@ -7,7 +7,7 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20260115
+Version:        20260416
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -71,6 +71,11 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Wed May 13 2026 Philippe Coval <philippe.coval@vates.tech> - 20260416-1
+- Update to Intel's publicly released microcode-20260512, based on XenServer's 20260416 release that has the same contents.
+- Security updates for INTEL-SA-01420
+- Update for multiple functional issues
+
 * Fri Feb 20 2026 Gael Duperrey <gduperrey@vates.tech> - 20260115-1
 - Update to Intel's publicly released microcode-20260210, based on XenServer's 20260115 release that has the same contents.
 - Security updates for:
