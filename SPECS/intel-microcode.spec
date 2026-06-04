@@ -1,5 +1,5 @@
 # Citrix does not publish SRPMs for their package, so we're duplicating efforts
-%define xs_release 1
+%define xs_release 2
 %define xs_dist xs8
 
 Summary:        Intel Microcode
@@ -71,6 +71,10 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Thu Jun 04 2026 Gael Duperrey <gduperrey@vates.tech> - 20260416-2
+- Update to Intel's microcode, based on XenServer's 20260416-2 release.
+ - Revert Granite Rapids AP/SP ucode back to IPU 2026.1 to fix a hang on boot on some platforms.
+
 * Wed May 13 2026 Philippe Coval <philippe.coval@vates.tech> - 20260416-1
 - Update to Intel's publicly released microcode-20260512, based on XenServer's 20260416 release that has the same contents.
 - Security updates for INTEL-SA-01420
