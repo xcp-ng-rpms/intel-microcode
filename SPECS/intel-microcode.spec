@@ -1,5 +1,5 @@
 # Citrix does not publish SRPMs for their package, so we're duplicating efforts
-%define xs_release 2
+%define xs_release 1
 %define xs_dist xs8
 
 Summary:        Intel Microcode
@@ -7,7 +7,7 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20260416
+Version:        20260925
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -71,6 +71,10 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Wed Oct 14 2026 Gael Duperrey <gduperrey@vates.tech> - 20260925-1
+- Update to Intel's microcode, based on XenServer's 20260925-1 release.
+ - Update to the 2026-09-25 drop. This is IPU 2026.3 with fixed Meteor Lake microcode.
+
 * Thu Jun 04 2026 Gael Duperrey <gduperrey@vates.tech> - 20260416-2
 - Update to Intel's microcode, based on XenServer's 20260416-2 release.
  - Revert Granite Rapids AP/SP ucode back to IPU 2026.1 to fix a hang on boot on some platforms.
