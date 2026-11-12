@@ -7,7 +7,7 @@ Name:           intel-microcode
 # This is the version coming from XenServer, who gets the microcode in advance
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
-Version:        20260925
+Version:        20260929
 Release:        %{xs_release}%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
@@ -71,6 +71,10 @@ rm -rf %{buildroot}
 /lib/firmware/intel-ucode
 
 %changelog
+* Thu Nov 12 2026 Laudin Molina Troconis <laudin.molina@vates.tech> - 20260929-1
+- Update to Intel's microcode, based on XenServer's 20260929-1 release.
+ - Update to IPU 2026.4.
+
 * Wed Oct 14 2026 Gael Duperrey <gduperrey@vates.tech> - 20260925-1
 - Update to Intel's microcode, based on XenServer's 20260925-1 release.
  - Update to the 2026-09-25 drop. This is IPU 2026.3 with fixed Meteor Lake microcode.
