@@ -8,7 +8,7 @@ Name:           intel-microcode
 # so they have a different date from the public release.
 # Put the public release version in the changelog when applicable.
 Version:        20260929
-Release:        %{xs_release}%{?dist}
+Release:        %{xs_release}~57283c2.1%{?dist}
 License:        Redistributable, no modification permitted
 URL:            https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/
 
